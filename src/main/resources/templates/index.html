@@ -3,25 +3,36 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>PassGenerator</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
 </head>
 <body>
 <div class="wrapper">
 	<div class="content">
 		<h1>Pass Generator</h1>
 		<form th:object="${inputConfiguration}" method="POST">
-			<label for="length">Length:</label>
-			<input type="number" id="length" name="length" value=12 />
-			<label for="useUpper">Use upper case chars</label>
-			<input type="checkbox" id="useUpper" name="useUpper" checked/>
-			<label for="useLower">Use lower case chars</label>
-			<input type="checkbox" id="useLower" name="useLower" checked/>
-			<label for="useNums">Use nums</label>
-			<input type="checkbox" id="useNums" name="useNums" checked/>
-			<label for="useSymbols">Use symbols</label>
-			<input type="checkbox" id="useSymbols" name="useSymbols" />
+			<div>
+				<label for="length">Length:</label>
+				<input type="number" id="length" name="length" value=12 min="1" max="35" />
+			</div>
+			<div>
+				<input type="checkbox" id="useUpper" name="useUpper" checked/>
+				<label for="useUpper">Use upper case chars</label>
+			</div>
+			<div>
+				<input type="checkbox" id="useLower" name="useLower" checked/>
+				<label for="useLower">Use lower case chars</label>
+			</div>
+			<div>
+				<input type="checkbox" id="useNums" name="useNums" checked/>
+				<label for="useNums">Use nums</label>
+			</div>
+			<div>
+				<input type="checkbox" id="useSymbols" name="useSymbols" />
+				<label for="useSymbols">Use symbols</label>
+			</div>
 			<button>Generate</button>
 		</form>
-		<div th:if="${pass}">
+		<div class="pass" th:if="${pass}">
 			<p>Password: </p>
 			<p th:utext="${pass}"></p>
 		</div>
