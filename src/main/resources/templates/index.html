@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>PassGenerator</title>
+</head>
+<body>
+<div class="wrapper">
+	<div class="content">
+		<h1>Pass Generator</h1>
+		<form th:object="${inputConfiguration}" method="POST">
+			<input type="number" name="length" value=12 />
+			<input type="checkbox" name="useUpper" checked/>
+			<input type="checkbox" name="useLower" checked/>
+			<input type="checkbox" name="useNums" checked/>
+			<input type="checkbox" name="useSymbols" />
+			<button>Generate</button>
+		</form>
+		<div th:if="${pass}">
+			<p>Password: </p>
+			<p th:utext="${pass}"></p>
+		</div>
+	</div>
+</div>
+</body>
+</html>
