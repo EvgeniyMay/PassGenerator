@@ -9,11 +9,16 @@
 	<div class="content">
 		<h1>Pass Generator</h1>
 		<form th:object="${inputConfiguration}" method="POST">
-			<input type="number" name="length" value=12 />
-			<input type="checkbox" name="useUpper" checked/>
-			<input type="checkbox" name="useLower" checked/>
-			<input type="checkbox" name="useNums" checked/>
-			<input type="checkbox" name="useSymbols" />
+			<label for="length">Length:</label>
+			<input type="number" id="length" name="length" value=12 />
+			<label for="useUpper">Use upper case chars</label>
+			<input type="checkbox" id="useUpper" name="useUpper" checked/>
+			<label for="useLower">Use lower case chars</label>
+			<input type="checkbox" id="useLower" name="useLower" checked/>
+			<label for="useNums">Use nums</label>
+			<input type="checkbox" id="useNums" name="useNums" checked/>
+			<label for="useSymbols">Use symbols</label>
+			<input type="checkbox" id="useSymbols" name="useSymbols" />
 			<button>Generate</button>
 		</form>
 		<div th:if="${pass}">
