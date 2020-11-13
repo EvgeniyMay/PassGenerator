@@ -4,9 +4,9 @@ import java.util.Random;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.learning.passGenerator.form.PassConfiguration;
 
@@ -20,17 +20,14 @@ public class MainController {
 	private String nums = "0123456789";
 	private String symbols = "!@#$%&*()_+-=[]|,./?><";		
 		
-	
-	@RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
+	@GetMapping("/")
 	public String mainGet(Model model) {
-		PassConfiguration input = new PassConfiguration();
-		
-		model.addAttribute("inputConfiguration" , input);
-		model.addAttribute("inputConfiguration");
+		model.addAttribute("inputConfiguration" , new PassConfiguration());
+
 		return "index";
 	}
 	
-	@RequestMapping(value = {"/", "/index"}, method = RequestMethod.POST)
+	@PostMapping("/")
 	public String mainPost(Model model,
 			@ModelAttribute("inputConfiguration") PassConfiguration config) {
 
@@ -53,6 +50,4 @@ public class MainController {
 		
 		return "index";
 	}
-	
-
 }
