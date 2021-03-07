@@ -9,32 +9,36 @@
 <div class="wrapper">
 	<div class="content">
 		<h1>Pass Generator</h1>
-		<form th:object="${inputConfiguration}" method="POST">
+		<form th:object="${passwordConfigForm}" method="POST">
 			<div>
 				<label for="length">Length:</label>
-				<input type="number" id="length" name="length" value=12 min="1" max="35" />
+				<input type="number" th:field="*{length}" id="length" value=12 min="1" max="35" />
 			</div>
 			<div>
-				<input type="checkbox" id="useUpper" name="useUpper" checked/>
+				<input type="checkbox" name="hasUpperChars"
+					   id="useUpper" th:checked="*{hasUpperChars()}"/>
 				<label for="useUpper">Use upper case chars</label>
 			</div>
 			<div>
-				<input type="checkbox" id="useLower" name="useLower" checked/>
+				<input type="checkbox" name="hasLowerChars" id="useLower"
+					   th:checked="*{hasLowerChars()}"/>
 				<label for="useLower">Use lower case chars</label>
 			</div>
 			<div>
-				<input type="checkbox" id="useNums" name="useNums" checked/>
-				<label for="useNums">Use nums</label>
+				<input type="checkbox" name="hasNumerals" id="useNumerals"
+					   th:checked="*{hasNumerals()}"/>
+				<label for="useNumerals">Use numerals</label>
 			</div>
 			<div>
-				<input type="checkbox" id="useSymbols" name="useSymbols" />
+				<input type="checkbox" name="hasSymbols" id="useSymbols"
+					   th:checked="*{hasSymbols()}"/>
 				<label for="useSymbols">Use symbols</label>
 			</div>
-			<button>Generate</button>
+			<button type="submit">Generate</button>
 		</form>
-		<div class="pass" th:if="${pass}">
+		<div th:if="${password}">
 			<p>Password: </p>
-			<p th:utext="${pass}"></p>
+			<p th:utext="${password}"></p>
 		</div>
 	</div>
 </div>

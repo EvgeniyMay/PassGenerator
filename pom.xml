@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.learnign</groupId>
-	<artifactId>passGenerator</artifactId>
+	<artifactId>password-generator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	
 	<name>PassGenerator</name>
-	<description>Simple pass Generator</description>
+	<description>Simple password Generator</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -23,12 +23,17 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
 		</dependency>
 	
 		<dependency>
@@ -46,5 +51,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	
 </project>
