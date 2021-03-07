@@ -2,13 +2,13 @@ package com.learning.passGenerator.dto;
 
 public class PasswordConfigDTO {
 
-    private int length;
+    private int length = 12;
 
-    private boolean hasUpperChars;
+    private boolean hasUpperChars = true;
 
-    private boolean hasLowerChars;
+    private boolean hasLowerChars = true;
 
-    private boolean hasNumerals;
+    private boolean hasNumerals = true;
 
     private boolean hasSymbols;
 
