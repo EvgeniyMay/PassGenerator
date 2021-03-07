@@ -1,21 +1,31 @@
 package com.learning.passGenerator.service;
 
 import com.learning.passGenerator.dto.PasswordConfigDTO;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
+@PropertySource("classpath:password.properties")
 public class PasswordService {
 
     private final Random random = new Random();
 
-    // ToDo | Replace
-    private final String LOWER_CHARS = "abcdefghijklmnopqrstuvwxyz";
-    private final String UPPER_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private final String NUMERALS = "0123456789";
-    private final String SYMBOLS = "!@#$%&*()_+-=[]|,./?><";
+    @Value("${password.tokens.characters.lowercase}")
+    private String LOWER_CHARS;
+
+    @Value("${password.tokens.characters.uppercase}")
+    private String UPPER_CHARS;
+
+    @Value("${password.tokens.numerals}")
+    private String NUMERALS;
+
+    @Value("${password.tokens.symbols}")
+    private String SYMBOLS;
+
 
     public String generateByConfig(PasswordConfigDTO passConfig) {
         char[] password = new char[passConfig.getLength()];
