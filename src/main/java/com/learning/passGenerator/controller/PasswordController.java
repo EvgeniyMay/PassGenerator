@@ -31,8 +31,12 @@ public class PasswordController {
                                    @ModelAttribute("passwordConfigForm")
                                    PasswordConfigDTO passConfig) {
         model.addAttribute("passwordConfigForm", passConfig);
-        model.addAttribute("password",
-                passwordService.generateByConfig(passConfig));
+
+        if(passwordService.isConfigValid(passConfig)) {
+            model.addAttribute("password", passwordService.generateByConfig(passConfig));
+        } else {
+            model.addAttribute("errors", passwordService.getConfigErrors(passConfig));
+        }
 
         return "index";
     }

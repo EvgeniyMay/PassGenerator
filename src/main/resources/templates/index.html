@@ -9,6 +9,13 @@
 <div class="wrapper">
 	<div class="content">
 		<h1>Pass Generator</h1>
+		<div th:if="${errors != null && errors.size() > 0}">
+			<ul>
+				<li th:each="error: ${errors}">
+					<div th:text="${error}"></div>
+				</li>
+			</ul>
+		</div>
 		<form th:action="@{/}" th:object="${passwordConfigForm}" method="POST">
 			<div>
 				<label for="length">Length:</label>

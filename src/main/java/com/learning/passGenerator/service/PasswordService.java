@@ -58,4 +58,26 @@ public class PasswordService {
 
         return new String(password);
     }
+
+    public boolean isConfigValid(PasswordConfigDTO passConfig) {
+        return getConfigErrors(passConfig).size() == 0;
+    }
+
+    public List<String> getConfigErrors(PasswordConfigDTO passConfig) {
+        List<String> errors = new ArrayList<>();
+
+        if(!passConfig.hasLowerChars()
+                && !passConfig.hasUpperChars()
+                && !passConfig.hasSymbols()
+                && !passConfig.hasNumerals()) {
+            errors.add("Choose at least one character type");
+        }
+
+        if(passConfig.getLength() < 1
+                || passConfig.getLength() > 35) {
+            errors.add("Length should be between 1 and 35");
+        }
+
+        return errors;
+    }
 }
