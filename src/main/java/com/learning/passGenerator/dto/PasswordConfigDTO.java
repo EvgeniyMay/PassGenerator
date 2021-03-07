@@ -4,11 +4,11 @@ public class PasswordConfigDTO {
 
     private int length = 12;
 
-    private boolean hasUpperChars = true;
+    private boolean hasUpperChars;
 
-    private boolean hasLowerChars = true;
+    private boolean hasLowerChars;
 
-    private boolean hasNumerals = true;
+    private boolean hasNumerals;
 
     private boolean hasSymbols;
 
