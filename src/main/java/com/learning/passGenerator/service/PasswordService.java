@@ -27,32 +27,37 @@ public class PasswordService {
     private String SYMBOLS;
 
     public String generateByConfig(PasswordConfigDTO passConfig) {
-        char[] password = new char[passConfig.getLength()];
-        List<List<Character>> ableCharLists = new ArrayList<>();
+        List<List<Character>> lists = new ArrayList<>();
 
         if(passConfig.hasLowerChars())
-            ableCharLists.add(LOWER_CHARS.chars()
+            lists.add(LOWER_CHARS.chars()
                     .mapToObj(c -> (char) c)
                     .collect(Collectors.toList()));
 
         if(passConfig.hasUpperChars())
-            ableCharLists.add(UPPER_CHARS.chars()
+            lists.add(UPPER_CHARS.chars()
                     .mapToObj(c -> (char) c)
                     .collect(Collectors.toList()));
 
         if(passConfig.hasNumerals())
-            ableCharLists.add(NUMERALS.chars()
+            lists.add(NUMERALS.chars()
                     .mapToObj(c -> (char) c)
                     .collect(Collectors.toList()));
 
         if(passConfig.hasSymbols())
-            ableCharLists.add(SYMBOLS.chars()
+            lists.add(SYMBOLS.chars()
                     .mapToObj(c -> (char) c)
                     .collect(Collectors.toList()));
 
+        return generatePassByLists(passConfig.getLength(), lists);
+    }
+
+    private String generatePassByLists(int length, List<List<Character>> lists) {
+        char[] password = new char[length];
+
         for(int i=0; i<password.length; ++i) {
-             // Get random list of characters
-            List<Character> characters = ableCharLists.get(random.nextInt(ableCharLists.size()));
+            // Get random list of characters
+            List<Character> characters = lists.get(random.nextInt(lists.size()));
             // Get random char from list
             char passChar = characters.get(random.nextInt(characters.size()));
 
