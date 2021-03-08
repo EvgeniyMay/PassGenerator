@@ -26,34 +26,37 @@ public class PasswordService {
     @Value("${password.tokens.symbols}")
     private String SYMBOLS;
 
-
     public String generateByConfig(PasswordConfigDTO passConfig) {
         char[] password = new char[passConfig.getLength()];
-
-        List<Character> ableChars = new ArrayList<>();
+        List<List<Character>> ableCharLists = new ArrayList<>();
 
         if(passConfig.hasLowerChars())
-            ableChars.addAll(LOWER_CHARS.chars()
-                    .mapToObj(c -> (char)c)
+            ableCharLists.add(LOWER_CHARS.chars()
+                    .mapToObj(c -> (char) c)
                     .collect(Collectors.toList()));
 
         if(passConfig.hasUpperChars())
-            ableChars.addAll(UPPER_CHARS.chars()
-                    .mapToObj(c -> (char)c)
+            ableCharLists.add(UPPER_CHARS.chars()
+                    .mapToObj(c -> (char) c)
                     .collect(Collectors.toList()));
 
         if(passConfig.hasNumerals())
-            ableChars.addAll(NUMERALS.chars()
-                    .mapToObj(c -> (char)c)
+            ableCharLists.add(NUMERALS.chars()
+                    .mapToObj(c -> (char) c)
                     .collect(Collectors.toList()));
 
         if(passConfig.hasSymbols())
-            ableChars.addAll(SYMBOLS.chars()
-                    .mapToObj(c -> (char)c)
+            ableCharLists.add(SYMBOLS.chars()
+                    .mapToObj(c -> (char) c)
                     .collect(Collectors.toList()));
 
         for(int i=0; i<password.length; ++i) {
-            password[i] = ableChars.get(random.nextInt(ableChars.size()));
+             // Get random list of characters
+            List<Character> characters = ableCharLists.get(random.nextInt(ableCharLists.size()));
+            // Get random char from list
+            char passChar = characters.get(random.nextInt(characters.size()));
+
+            password[i] = passChar;
         }
 
         return new String(password);
