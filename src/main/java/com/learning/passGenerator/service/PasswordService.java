@@ -27,6 +27,11 @@ public class PasswordService {
     private String SYMBOLS;
 
     public String generateByConfig(PasswordConfigDTO passConfig) {
+        return generatePassByLists(passConfig.getLength(),
+                getCharListsByConfig(passConfig));
+    }
+
+    public List<List<Character>> getCharListsByConfig(PasswordConfigDTO passConfig) {
         List<List<Character>> lists = new ArrayList<>();
 
         if(passConfig.hasLowerChars())
@@ -49,7 +54,7 @@ public class PasswordService {
                     .mapToObj(c -> (char) c)
                     .collect(Collectors.toList()));
 
-        return generatePassByLists(passConfig.getLength(), lists);
+        return lists;
     }
 
     private String generatePassByLists(int length, List<List<Character>> lists) {
